@@ -1,12 +1,25 @@
 import './scss/app.scss';
 import Categories from './components/Categories';
+import React from 'react';
 import Header from './components/Header';
 import Sort from './components/Sort';
 import PizzaBlock from './components/PizzaBlock';
 
-import pizzas from './assets/pizzas.json';
+// import pizzas from './assets/pizzas.json';
 
 function App() {
+  const [pizzas, setpizzas] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch('https://63fabf852027a45d8d5b2850.mockapi.io/items')
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setpizzas(res);
+      });
+  }, []);
+
   return (
     <div className="wrapper">
       <Header />
@@ -27,6 +40,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
