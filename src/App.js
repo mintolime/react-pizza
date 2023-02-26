@@ -17,6 +17,7 @@ function App() {
       })
       .then((res) => {
         setpizzas(res);
+        console.log(res)
       });
   }, []);
 
