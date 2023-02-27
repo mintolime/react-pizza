@@ -3,10 +3,9 @@ import React from 'react';
 import './scss/app.scss';
 import Header from './components/Header';
 import Home from './pages/Home';
+import Cart from './pages/Cart';
 import NotFound from './pages/NotFoundPage/index';
 import { Routes, Route } from 'react-router-dom/dist';
-
-// import pizzas from './assets/pizzas.json';
 
 function App() {
   return (
@@ -14,6 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <div className="content"></div>
