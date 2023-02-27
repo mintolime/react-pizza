@@ -1,12 +1,19 @@
 @import '../variables';
 .header {
   border-bottom: 1px solid $gray-line;
-  padding: 40px 0;
+  padding: 40px 0 ;
+  margin-bottom: 10px;
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width:645px) {
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+    }
   }
 
   &__logo {
