@@ -16,7 +16,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <div className="content"></div>
+      {/* <div className="content"></div> */}
     </div>
   );
 }
