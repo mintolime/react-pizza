@@ -18,6 +18,7 @@ function Home() {
         setpizzas(res);
         setIsLoading(false);
       });
+    window.scrollTo(0, 0);
   }, []);
 
   return (
