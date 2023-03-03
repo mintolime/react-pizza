@@ -8,7 +8,10 @@ import PizzaSkeleton from '../components/PizzaSkeleton';
 function Home() {
   const [pizzas, setpizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [activeSort, setActiveSort] = React.useState(0);
+  const [activeSort, setActiveSort] = React.useState({
+    name: 'популярности',
+    sortProperty: 'rating',
+  });
   const [activeCategory, setActiveCategory] = React.useState(0);
 
   React.useEffect(() => {
@@ -16,7 +19,7 @@ function Home() {
     fetch(
       `https://63fabf852027a45d8d5b2850.mockapi.io/items?${
         activeCategory > 0 ? `category=${activeCategory}` : ''
-      }`,
+      }&sortBy=${activeSort.sortProperty}&order=desc`,
     )
       .then((res) => {
         return res.json();
