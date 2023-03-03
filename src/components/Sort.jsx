@@ -1,15 +1,15 @@
 import React from 'react';
 
-function Sort() {
+function Sort({value,onChangeSort}) {
   const [open, setOpen] = React.useState(false);
-  const [activeSort, setActiveSort] = React.useState(0);
+  // const [activeSort, setActiveSort] = React.useState(0);
   const sortNames = ['популярности', 'цене', 'алфавиту'];
-  const listName = sortNames[activeSort];
+  const listName = sortNames[value];
 
-  
+
 
   const onClickListItem = (i) => {
-    setActiveSort(i);
+    onChangeSort(i);
     setOpen(false);
   };
 
@@ -38,14 +38,14 @@ function Sort() {
       {open && (
         <div className="sort__popup active">
           <ul>
-            {sortNames.map((value, i) => (
+            {sortNames.map((data, i) => (
               <li
                 key={i}
                 onClick={() => {
                   onClickListItem(i);
                 }}
-                className={activeSort === i ? 'active' : ''}>
-                {value}
+                className={value === i ? 'active' : ''}>
+                {data}
               </li>
             ))}
           </ul>
