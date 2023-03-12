@@ -1,12 +1,19 @@
 import React from 'react';
+import ReactPaginate from 'react-paginate';
 import styles from './Paggination.module.scss';
 
-function Paggination() {
+function Paggination({ onChangePage }) {
   return (
-    <div className={styles.root}>
-      <h1>Ничего не найдено 😔 </h1>
-      <p className={styles.decription}>К сожалению данная страница отсутствует...</p>
-    </div>
+    <ReactPaginate
+      className={styles.root}
+      breakLabel="..."
+      nextLabel=" >"
+      onPageChange={(evt) => onChangePage(evt.selected + 1)}
+      pageRangeDisplayed={4}
+      pageCount={3}
+      previousLabel="< "
+      renderOnZeroPageCount={null}
+    />
   );
 }
 

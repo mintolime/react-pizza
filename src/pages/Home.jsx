@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Paggination from '../components/Paggination';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
@@ -13,15 +14,16 @@ function Home({ searchValue }) {
     sortProperty: 'rating',
   });
   const [activeCategory, setActiveCategory] = React.useState(0);
+  const [isNumderPage, setIsNumderPage] = React.useState(1);
 
   React.useEffect(() => {
     setIsLoading(true);
 
     const search = searchValue ? `&search=${searchValue}` : '';
     fetch(
-      `https://63fabf852027a45d8d5b2850.mockapi.io/items?${
+      `https://63fabf852027a45d8d5b2850.mockapi.io/items?page=${isNumderPage}&limit=4&${
         activeCategory > 0 ? `category=${activeCategory}` : ''
-      }&sortBy=${activeSort.sortProperty}&order=desc${search}`
+      }&sortBy=${activeSort.sortProperty}&order=desc${search}`,
     )
       .then((res) => {
         return res.json();
@@ -31,7 +33,7 @@ function Home({ searchValue }) {
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [activeCategory, activeSort, searchValue]);
+  }, [activeCategory, activeSort, searchValue, isNumderPage]);
 
   return (
     <div className="container">
@@ -55,6 +57,11 @@ function Home({ searchValue }) {
           ? [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />)
           : pizzas.map((data) => <PizzaBlock key={data.id} {...data} />)}
       </div>
+      <Paggination
+        onChangePage={(num) => {
+          setIsNumderPage(num);
+        }}
+      />
     </div>
   );
 }
