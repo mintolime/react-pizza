@@ -14,7 +14,7 @@ function App() {
     <div className="wrapper">
       <Header searchValue={searchValue} setSearchValue={setSearchValue} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home searchValue={searchValue} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
