@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import NotFound from './pages/NotFoundPage/index';
 import { Routes, Route } from 'react-router-dom/dist';
+import { store } from './redux/store';
 
 function App() {
   const [searchValue, setSearchValue] = React.useState('');
