@@ -14,7 +14,7 @@ function PizzaBlock({ title, price, imageUrl, sizes, types }) {
         <h4 className="pizza-block__title">{title}</h4>
         <div className="pizza-block__selector">
           <ul>
-            {types.map((typeId) => (
+            {types?.map((typeId) => (
               <li
                 key={typeId}
                 onClick={() => settypesPizza(typeId)}
@@ -24,7 +24,7 @@ function PizzaBlock({ title, price, imageUrl, sizes, types }) {
             ))}
           </ul>
           <ul>
-            {sizes.map((size, i) => (
+            {sizes?.map((size, i) => (
               <li
                 key={i}
                 onClick={() => setsizesPizza(i)}
