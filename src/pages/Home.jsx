@@ -19,7 +19,7 @@ function Home({ searchValue }) {
   const onChangePagination = (num) => {
     dispatch(setPageCount(num))
   }
-  console.log(pageCount)
+  
   const [pizzas, setpizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   // const [isNumderPage, setIsNumderPage] = React.useState(1);
