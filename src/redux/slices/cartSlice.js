@@ -10,12 +10,6 @@ const cardSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        // addItems(state, action) {
-        //     state.items.push(action.payload);
-        //     state.totalPrice = state.items.reduce((sum, obj) => {
-        //         return obj.price + sum
-        //     }, 0)
-        // },
         addItems(state, action) {
             const findItem = state.items.find(obj => obj.id === action.payload.id)
             
@@ -30,15 +24,28 @@ const cardSlice = createSlice({
                 return (obj.price * obj.count) + sum
             }, 0)
         },
+        // plusItem(state, action){
+        //     const findItem = state.items.find(obj => obj.id === action.payload)
+        //     if (findItem) {
+        //         findItem.count++
+        //     }
+        // },
+        minusItems(state, action){
+            const findItem = state.items.find(obj => obj.id === action.payload)
+            if (findItem) {
+                findItem.count--
+            }
+        },
         removeItems(state, action) {
             state.items = state.items.filter(obj => obj.id === !action.payload);
         },
         clearItems(state) {
             state.items = []
+            state.totalPrice = 0;
         },
     }
 });
 
-export const { addItems, removeItems, clearItems } = cardSlice.actions;
+export const { addItems, removeItems,minusItems, clearItems } = cardSlice.actions;
 
 export default cardSlice.reducer;
