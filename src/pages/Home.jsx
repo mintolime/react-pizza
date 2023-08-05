@@ -1,5 +1,8 @@
 import React from 'react';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { setCategoryId, setPageCount } from '../redux/slices/filterSlice';
 import Paggination from '../components/Paggination';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -7,48 +10,47 @@ import PizzaBlock from '../components/PizzaBlock';
 import PizzaSkeleton from '../components/PizzaSkeleton';
 
 function Home({ searchValue }) {
+  const { categoryId, sort, pageCount } = useSelector(state => state.filter)
+  const dispatch = useDispatch();
+
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id))
+  }
+  const onChangePagination = (num) => {
+    dispatch(setPageCount(num))
+  }
+  
   const [pizzas, setpizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [activeSort, setActiveSort] = React.useState({
-    name: 'популярности',
-    sortProperty: 'rating',
-  });
-  const [activeCategory, setActiveCategory] = React.useState(0);
-  const [isNumderPage, setIsNumderPage] = React.useState(1);
+  // const [isNumderPage, setIsNumderPage] = React.useState(1);
+
 
   React.useEffect(() => {
     setIsLoading(true);
 
     const search = searchValue ? `&search=${searchValue}` : '';
-    fetch(
-      `https://63fabf852027a45d8d5b2850.mockapi.io/items?page=${isNumderPage}&limit=4&${
-        activeCategory > 0 ? `category=${activeCategory}` : ''
-      }&sortBy=${activeSort.sortProperty}&order=desc${search}`,
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setpizzas(res);
+
+    axios.get(`https://63fabf852027a45d8d5b2850.mockapi.io/items?page=${pageCount}&limit=4&${categoryId > 0 ? `category=${categoryId}` : ''
+      }&sortBy=${sort.sortProperty}&order=desc${search}`).then(res => {
+        setpizzas(res.data);
         setIsLoading(false);
-      });
+      })
+
     window.scrollTo(0, 0);
-  }, [activeCategory, activeSort, searchValue, isNumderPage]);
+  }, [categoryId, sort, searchValue, pageCount]);
 
   return (
     <div className="container">
       <div className="content__top">
         <Categories
-          value={activeCategory}
-          onChangeCategory={(id) => {
-            setActiveCategory(id);
-          }}
+          value={categoryId}
+          onChangeCategory={onChangeCategory}
         />
         <Sort
-          value={activeSort}
-          onChangeSort={(id) => {
-            setActiveSort(id);
-          }}
+        // value={activeSort}
+        // onChangeSort={(id) => {
+        //   setActiveSort(id);
+        // }}
         />
       </div>
       <h2 className="content__title">Все пиццы</h2>
@@ -58,9 +60,8 @@ function Home({ searchValue }) {
           : pizzas.map((data) => <PizzaBlock key={data.id} {...data} />)}
       </div>
       <Paggination
-        onChangePage={(num) => {
-          setIsNumderPage(num);
-        }}
+        pageCount={pageCount}
+        onChangePage={onChangePagination}
       />
     </div>
   );

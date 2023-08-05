@@ -1,19 +1,37 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSort } from '../redux/slices/filterSlice';
 
-function Sort({ value, onChangeSort }) {
+const sortNames = [
+  { name: 'популярности', sortProperty: 'rating' },
+  { name: 'цене', sortProperty: 'price' },
+  { name: 'алфавиту', sortProperty: 'title' },
+];
+
+function Sort() {
+  const dispatch = useDispatch();
+  const sort = useSelector(state => state.filter.sort)
+  const sortRef = React.useRef()
   const [open, setOpen] = React.useState(false);
-  const sortNames = [
-    { name: 'популярности', sortProperty: 'rating' },
-    { name: 'цене', sortProperty: 'price' },
-    { name: 'алфавиту', sortProperty: 'title' },
-  ];
-  const onClickListItem = (i) => {
-    onChangeSort(i);
+
+  const onClickListItem = (obj) => {
+    dispatch(setSort(obj))
     setOpen(false);
   };
 
+  React.useEffect(() => {
+    const hansleClickOutside = evt => {
+      if (!evt.composedPath().includes(sortRef.current)) {
+        setOpen(false)
+      }
+    }
+    document.body.addEventListener('click', hansleClickOutside);
+
+    return () => document.body.removeEventListener('click', hansleClickOutside)
+  }, [])
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
@@ -31,7 +49,7 @@ function Sort({ value, onChangeSort }) {
           onClick={() => {
             setOpen(!open);
           }}>
-          {value.name}
+          {sort.name}
         </span>
       </div>
       {open && (
@@ -43,7 +61,7 @@ function Sort({ value, onChangeSort }) {
                 onClick={() => {
                   onClickListItem(data);
                 }}
-                className={value.sortProperty === data.sortProperty ? 'active' : ''}>
+                className={sort.sortProperty === data.sortProperty ? 'active' : ''}>
                 {data.name}
               </li>
             ))}
