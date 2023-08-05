@@ -2,6 +2,9 @@ import React from 'react';
 import debounce from 'lodash.debounce';
 import styles from './Search.module.scss';
 
+import  searchIcon from '../../img/search_icon.svg'
+import  clearIcon from '../../img/clear_icon.svg'
+
 function Search({ searchValue, setSearchValue }) {
   const [value, setValue] = React.useState('')
   const inputRef = React.useRef()
@@ -20,8 +23,8 @@ function Search({ searchValue, setSearchValue }) {
 
   return (
     <div className={styles.root}>
-      <img className={styles.search} src="img/search_icon.svg" alt="search logo" />
-      <img className={styles.clear} src="img/clear_icon.svg" alt="clear logo" onClick={onClickClear} />
+      <img className={styles.search} src={searchIcon} alt="search logo" />
+      <img className={styles.clear} src={clearIcon} alt="clear logo" onClick={onClickClear} />
       <input
         ref={inputRef}
         value={value}
