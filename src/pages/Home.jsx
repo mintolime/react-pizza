@@ -14,60 +14,57 @@ function Home({ searchValue }) {
   const dispatch = useDispatch();
   // const [isLoading, setIsLoading] = React.useState(true);
 
-  const { categoryId, sort, pageCount } = useSelector(state => state.filter)
-  const { items, status } = useSelector(state => state.pizzas)
+  const { categoryId, sort, pageCount } = useSelector((state) => state.filter);
+  const { items, status } = useSelector((state) => state.pizzas);
 
   const onChangeCategory = (id) => {
-    dispatch(setCategoryId(id))
-  }
+    dispatch(setCategoryId(id));
+  };
   const onChangePagination = (num) => {
-    dispatch(setPageCount(num))
-  }
-
-
+    console.log(pageCount);
+    dispatch(setPageCount(num));
+  };
 
   const getPizzas = () => {
     // setIsLoading(true);
 
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    dispatch(fetchPizzas({
-      categoryId, sort, searchValue, pageCount, search
-    }))
+    dispatch(
+      fetchPizzas({
+        categoryId,
+        sort,
+        searchValue,
+        pageCount,
+        search,
+      }),
+    );
+  };
 
-  }
-
-  console.log('status', status)
-  console.log('pizza', items)
+  // console.log('status', typeof status);
+  // console.log('pizza', items);
 
   React.useEffect(() => {
-    getPizzas()
+    getPizzas();
   }, [categoryId, sort, searchValue, pageCount]);
 
   return (
     <div className="container">
       <div className="content__top">
-        <Categories
-          value={categoryId}
-          onChangeCategory={onChangeCategory}
-        />
-        <Sort
-        // value={activeSort}
-        // onChangeSort={(id) => {
-        //   setActiveSort(id);
-        // }}
-        />
+        <Categories value={categoryId} onChangeCategory={onChangeCategory} />
+        <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {status === 'loading'
-          ? [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />)
-          : items.map((data) => <PizzaBlock key={data.id} {...data} />)}
+        {status === 'loading' ? (
+          [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />)
+        ) : status === 'error' ? (
+          <p className="content__heading">Произошла ошибка при загрузке пицц :С </p>
+        ) : (
+          items.map((data) => <PizzaBlock key={data.id} {...data} />)
+        )}
       </div>
-      <Paggination
-        pageCount={pageCount}
-        onChangePage={onChangePagination}
-      />
+      <Paggination pageCount={pageCount} onChangePage={onChangePagination} />
     </div>
   );
 }

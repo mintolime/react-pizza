@@ -28,6 +28,11 @@ body {
     font-weight: 700;
     font-size: 35px;
   }
+  &__heading{
+     margin: 35px auto;
+    font-weight: 500;
+    font-size: 25px;
+  }
 
   &__items {
     display: grid;
