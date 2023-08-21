@@ -12,7 +12,6 @@ import { fetchPizzas } from '../redux/slices/pizzasSlice';
 
 function Home({ searchValue }) {
   const dispatch = useDispatch();
-  // const [isLoading, setIsLoading] = React.useState(true);
 
   const { categoryId, sort, pageCount } = useSelector((state) => state.filter);
   const { items, status } = useSelector((state) => state.pizzas);
@@ -26,8 +25,6 @@ function Home({ searchValue }) {
   };
 
   const getPizzas = () => {
-    // setIsLoading(true);
-
     const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
@@ -59,7 +56,10 @@ function Home({ searchValue }) {
         {status === 'loading' ? (
           [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />)
         ) : status === 'error' ? (
-          <p className="content__heading">Произошла ошибка при загрузке пицц :С </p>
+          <div className="content__error-info">
+            <h2>Произошла ошибка...</h2>
+            <p >Не удалось загрузить пицки 😔 </p>
+          </div>
         ) : (
           items.map((data) => <PizzaBlock key={data.id} {...data} />)
         )}

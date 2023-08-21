@@ -23,15 +23,29 @@ body {
 .content {
   padding: 40px 0;
 
+  &__error-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: 35px auto;
+    max-width: 600px;
+    grid-area: 1/2;
+
+    h2 {
+      font-weight: 500;
+      font-size: 25px;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 15px;
+    }
+  }
+
   &__title {
     margin: 35px 0;
     font-weight: 700;
     font-size: 35px;
-  }
-  &__heading{
-     margin: 35px auto;
-    font-weight: 500;
-    font-size: 25px;
   }
 
   &__items {

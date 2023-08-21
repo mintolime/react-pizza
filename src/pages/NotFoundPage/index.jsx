@@ -4,7 +4,7 @@ import styles from './NotFound.module.scss';
 function NotFound() {
   return (
     <div className={styles.root}>
-      <h1>Ничего не найдено 😔 </h1>
+      <h2>Ничего не найдено 😔 </h2>
       <p className={styles.decription}>К сожалению данная страница отсутствует...</p>
     </div>
   );
