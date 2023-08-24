@@ -2,25 +2,26 @@ import React from 'react';
 // import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setCategoryId, setPageCount } from '../redux/slices/filterSlice';
+import { selectFilter, setCategoryId, setPageCount } from '../redux/slices/filterSlice';
 import Paggination from '../components/Paggination';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import PizzaSkeleton from '../components/PizzaSkeleton';
-import { fetchPizzas } from '../redux/slices/pizzasSlice';
+import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzasSlice';
 
-function Home({ searchValue }) {
+function Home() {
   const dispatch = useDispatch();
 
-  const { categoryId, sort, pageCount } = useSelector((state) => state.filter);
-  const { items, status } = useSelector((state) => state.pizzas);
+  const { categoryId, sort, pageCount,searchValue } = useSelector(selectFilter);
+  const { items, status } = useSelector(selectPizzaData);
+  console.log(searchValue)
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
   };
   const onChangePagination = (num) => {
-    console.log(pageCount);
+    // console.log(pageCount);
     dispatch(setPageCount(num));
   };
 

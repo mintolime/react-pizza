@@ -1,23 +1,27 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import debounce from 'lodash.debounce';
-import styles from './Search.module.scss';
 
+import { setSearchValue } from '../../redux/slices/filterSlice';
+import styles from './Search.module.scss';
 import  searchIcon from '../../img/search_icon.svg'
 import  clearIcon from '../../img/clear_icon.svg'
 
-function Search({ searchValue, setSearchValue }) {
+function Search() {
+  const dispatch = useDispatch()
   const [value, setValue] = React.useState('')
   const inputRef = React.useRef()
   //правильное обращение к дом элементам лучше делать через ref
+
   const onClickClear = () => {
-    setSearchValue('')
+    dispatch(setSearchValue(''))
     setValue('')
     inputRef.current.focus()
   }
 
   const updateSearchValue = React.useCallback(
     debounce((str) => {
-      setSearchValue(str)
+      dispatch(setSearchValue(str))
     }, 500),[]
   )
 
