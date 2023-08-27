@@ -7,6 +7,7 @@
   width: 280px;
   text-align: center;
   margin-bottom: 65px;
+  transition: scale .8s ease;
 
   &__image {
     width: 260px;
@@ -14,6 +15,7 @@
   
     &:hover {
     scale: 1.05;
+    transition: scale .5s ease;
   }
 
   &__title {
