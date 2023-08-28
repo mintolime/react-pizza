@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import styles from './Paggination.module.scss';
 
 function Paggination({ pageCount,onChangePage }) {
-console.log({pageCount})
+// console.log({pageCount})
   return (
     <ReactPaginate
       className={styles.root}

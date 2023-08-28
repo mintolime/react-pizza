@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import pizzaLogo from '../img/pizza-logo.svg'
 import { selectCart } from '../redux/slices/cartSlice';
 
-function Header({ searchValue, setSearchValue }) {
+function Header() {
   const { items, totalPrice } = useSelector(selectCart);
   const totalCount = items.reduce((sum, item) => sum + item.count, 0)
 
@@ -21,7 +21,7 @@ function Header({ searchValue, setSearchValue }) {
             </div>
           </div>
         </Link>
-        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+        <Search  />
 
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">

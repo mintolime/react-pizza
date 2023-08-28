@@ -25,12 +25,6 @@ const cardSlice = createSlice({
         return obj.price * obj.count + sum;
       }, 0);
     },
-    // plusItem(state, action){
-    //     const findItem = state.items.find(obj => obj.id === action.payload)
-    //     if (findItem) {
-    //         findItem.count++
-    //     }
-    // },
     minusItems(state, action) {
       const findItem = state.items.find((obj) => obj.id === action.payload);
       if (findItem) {

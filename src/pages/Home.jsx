@@ -15,7 +15,7 @@ function Home() {
 
   const { categoryId, sort, pageCount,searchValue } = useSelector(selectFilter);
   const { items, status } = useSelector(selectPizzaData);
-  console.log(searchValue)
+  // console.log(searchValue)
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));

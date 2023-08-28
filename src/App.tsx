@@ -10,7 +10,7 @@ import { Routes, Route } from 'react-router-dom/dist';
 function App() {
   return (
     <div className="wrapper">
-      <Header  />
+      <Header />
       <Routes>
         <Route path="/" element={<Home  />} />
         <Route path="/cart" element={<Cart />} />
