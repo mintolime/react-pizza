@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
 
 import CartItem from '../components/CartItem';
-import { isAction } from '@reduxjs/toolkit';
 import { clearItems } from '../redux/slices/cartSlice';
 import CartEmpty from '../components/CartEmpty';
 import { selectCart } from '../redux/slices/cartSlice';
@@ -14,11 +14,7 @@ function Cart() {
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0)
 
-  const onClickClear = () => {
-    if (window.confirm('Удалить все пицки :( ? ')) {
-      dispatch(clearItems());
-    }
-  }
+  // const onClickClear = 
 
   return (
     items.length > 0 ? <div className="container container--cart">
@@ -91,12 +87,22 @@ function Cart() {
                 strokeLinejoin="round"
               />
             </svg>
-
-            <span onClick={onClickClear}>Очистить корзину</span>
+            {/* попап для подтверждения удаления */}
+            <Popconfirm
+              title="Подтвердите удаление"
+              description="Удалить все пицки :( ? "
+              okText="Да"
+              cancelText="Отменить"
+              onConfirm={() => {
+                dispatch(clearItems());
+              }}
+            >
+              <Button className="container__button" >Очистить корзину</Button>
+            </Popconfirm>
           </div>
         </div>
 
-        <div className=" content_cart">
+        <div className="content_cart">
           {items.map((item) => (
             <CartItem key={item.id} {...item} />
           ))}
