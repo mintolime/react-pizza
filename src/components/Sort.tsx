@@ -1,21 +1,21 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectFilterSort, setSort } from '../redux/slices/filterSlice';
-import { sortNames } from '../config/constants';
+import { sortNames, SortItem } from '../config/sortNames';
 
 function Sort() {
   const dispatch = useDispatch();
   const sort = useSelector(selectFilterSort)
-  const sortRef = React.useRef()
+  const sortRef = React.useRef<HTMLDivElement>(null)
   const [open, setOpen] = React.useState(false);
 
-  const onClickListItem = (obj) => {
+  const onClickListItem = (obj: SortItem) => {
     dispatch(setSort(obj))
     setOpen(false);
   };
 
   React.useEffect(() => {
-    const hansleClickOutside = evt => {
+    const hansleClickOutside = (evt:any) => {
       if (!evt.composedPath().includes(sortRef.current)) {
         setOpen(false)
       }

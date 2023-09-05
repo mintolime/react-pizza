@@ -4,7 +4,17 @@ import { useDispatch } from "react-redux";
 import { Button, Popconfirm } from 'antd';
 import { addItems, minusItems, removeItems } from '../redux/slices/cartSlice';
 
-function CartItem({ id, title, type, size, price, count, imageUrl }) {
+type CartItemProps = {
+  id: string;
+  title: string;
+  type: string; 
+  size: number; 
+  price: number; 
+  count: number; 
+  imageUrl: string;
+}
+
+ const CartItem: React.FC<CartItemProps> = ({ id, title, type, size, price, count, imageUrl }) => {
   const dispatch = useDispatch()
 
   const onClickPlus = () => {
@@ -18,8 +28,8 @@ function CartItem({ id, title, type, size, price, count, imageUrl }) {
   }
 
   const onClickRemove = () => {
-    console.log(1,id)
-      dispatch(removeItems(id))
+    console.log(1, id)
+    dispatch(removeItems(id))
   }
 
   return (
@@ -76,16 +86,16 @@ function CartItem({ id, title, type, size, price, count, imageUrl }) {
         <b>{price * count} ₽</b>
       </div>
       {/* <div className="cart__item-remove"> */}
-        <Popconfirm
-          title="Подтвердите удаление"
-          description="Удалить эту пицку? "
-          onConfirm={onClickRemove}
-          okText="Да"
-          cancelText="Отменить"
-          
-        >
-          <Button className="container__button" icon={<DeleteOutlined style={{ color: 'red' }}/>}>
-            {/* <svg
+      <Popconfirm
+        title="Подтвердите удаление"
+        description="Удалить эту пицку? "
+        onConfirm={onClickRemove}
+        okText="Да"
+        cancelText="Отменить"
+
+      >
+        <Button className="container__button" icon={<DeleteOutlined style={{ color: 'red' }} />}>
+          {/* <svg
               width="10"
               height="10"
               viewBox="0 0 10 10"
@@ -100,8 +110,8 @@ function CartItem({ id, title, type, size, price, count, imageUrl }) {
                 fill="#EB5A1E"
               />
             </svg> */}
-          </Button >
-        </Popconfirm>
+        </Button >
+      </Popconfirm>
       {/* </div> */}
     </div>
   )

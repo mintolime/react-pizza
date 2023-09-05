@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 import styles from './Paggination.module.scss';
+type PagginationProps = { pageCount: number; onChangePage: any; }
 
-function Paggination({ pageCount,onChangePage }) {
-// console.log({pageCount})
+const Paggination: React.FC<PagginationProps> = ({ pageCount, onChangePage }) => {
+
   return (
     <ReactPaginate
       className={styles.root}
