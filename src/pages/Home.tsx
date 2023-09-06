@@ -17,10 +17,10 @@ function Home() {
   const { items, status } = useSelector(selectPizzaData);
   // console.log(searchValue)
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id:number) => {
     dispatch(setCategoryId(id));
   };
-  const onChangePagination = (num) => {
+  const onChangePagination = (num: number) => {
     // console.log(pageCount);
     dispatch(setPageCount(num));
   };
@@ -29,6 +29,7 @@ function Home() {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
+      // @ts-ignore
       fetchPizzas({
         categoryId,
         sort,
@@ -62,7 +63,7 @@ function Home() {
             <p >Не удалось загрузить пицки 😔 </p>
           </div>
         ) : (
-          items.map((data) => <PizzaBlock key={data.id} {...data} />)
+          items.map((data:any) => <PizzaBlock key={data.id} {...data} />)
         )}
       </div>
       <Paggination pageCount={pageCount} onChangePage={onChangePagination} />

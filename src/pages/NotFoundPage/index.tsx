@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './NotFound.module.scss';
 
-function NotFound() {
+ const NotFound = () => {
   return (
     <div className={styles.root}>
       <h2>Ничего не найдено 😔 </h2>

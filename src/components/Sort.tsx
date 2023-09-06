@@ -15,8 +15,11 @@ function Sort() {
   };
 
   React.useEffect(() => {
-    const hansleClickOutside = (evt:any) => {
-      if (!evt.composedPath().includes(sortRef.current)) {
+    const hansleClickOutside = (evt: MouseEvent) => {
+      const _evt = evt as MouseEvent & {
+        path: Node[]
+      }
+      if (sortRef.current && !_evt.composedPath().includes(sortRef.current)) {
         setOpen(false)
       }
     }
