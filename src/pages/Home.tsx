@@ -1,6 +1,6 @@
 import React from 'react';
 // import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { selectFilter, setCategoryId, setPageCount } from '../redux/slices/filterSlice';
 import Paggination from '../components/Paggination';
@@ -9,9 +9,10 @@ import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import PizzaSkeleton from '../components/PizzaSkeleton';
 import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzasSlice';
+import { useAppDispatch } from '../redux/store';
 
 function Home() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { categoryId, sort, pageCount,searchValue } = useSelector(selectFilter);
   const { items, status } = useSelector(selectPizzaData);
@@ -29,7 +30,6 @@ function Home() {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
-      // @ts-ignore
       fetchPizzas({
         categoryId,
         sort,
@@ -39,9 +39,6 @@ function Home() {
       }),
     );
   };
-
-  // console.log('status', typeof status);
-  // console.log('pizza', items);
 
   React.useEffect(() => {
     getPizzas();

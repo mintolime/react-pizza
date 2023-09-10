@@ -2,7 +2,7 @@ import React from "react";
 import { DeleteOutlined } from '@ant-design/icons';
 import { useDispatch } from "react-redux";
 import { Button, Popconfirm } from 'antd';
-import { addItems, minusItems, removeItems } from '../redux/slices/cartSlice';
+import { CartItemSlice, addItems, minusItems, removeItems } from '../redux/slices/cartSlice';
 
 type CartItemProps = {
   id: string;
@@ -18,9 +18,7 @@ type CartItemProps = {
   const dispatch = useDispatch()
 
   const onClickPlus = () => {
-    dispatch(addItems({
-      id,
-    }))
+    dispatch(addItems({id} as CartItemSlice))
   }
 
   const onClickMinus = () => {

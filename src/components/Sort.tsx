@@ -1,15 +1,17 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectFilterSort, setSort } from '../redux/slices/filterSlice';
-import { sortNames, SortItem } from '../config/sortNames';
 
-function Sort() {
-  const dispatch = useDispatch();
+import { useSelector} from 'react-redux';
+import { selectFilterSort, setSort } from '../redux/slices/filterSlice';
+import { sortNames } from '../config/sortNames';
+import { useAppDispatch } from '../redux/store';
+
+const Sort:React.FC = () => {
+  const dispatch = useAppDispatch();
   const sort = useSelector(selectFilterSort)
   const sortRef = React.useRef<HTMLDivElement>(null)
   const [open, setOpen] = React.useState(false);
 
-  const onClickListItem = (obj: SortItem) => {
+  const onClickListItem = (obj:any) => {
     dispatch(setSort(obj))
     setOpen(false);
   };
