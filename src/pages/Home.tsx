@@ -14,13 +14,14 @@ import { useAppDispatch } from '../redux/store';
 function Home() {
   const dispatch = useAppDispatch();
 
-  const { categoryId, sort, pageCount,searchValue } = useSelector(selectFilter);
+  const { categoryId, sort, pageCount, searchValue } = useSelector(selectFilter);
   const { items, status } = useSelector(selectPizzaData);
   // console.log(searchValue)
 
-  const onChangeCategory = (id:number) => {
+  const onChangeCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+  }, []);
+
   const onChangePagination = (num: number) => {
     // console.log(pageCount);
     dispatch(setPageCount(num));
@@ -60,7 +61,7 @@ function Home() {
             <p >Не удалось загрузить пицки 😔 </p>
           </div>
         ) : (
-          items.map((data:any) => <PizzaBlock key={data.id} {...data} />)
+          items.map((data: any) => <PizzaBlock key={data.id} {...data} />)
         )}
       </div>
       <Paggination pageCount={pageCount} onChangePage={onChangePagination} />

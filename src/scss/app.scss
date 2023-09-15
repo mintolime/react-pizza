@@ -92,6 +92,7 @@ body {
       margin: 0;
     }
   }
+
   &__button {
     border: none;
   }
@@ -180,6 +181,7 @@ body {
           width: 200px;
           height: 200px;
         }
+
         // @media (max-width: 720px) {
         //   // width: 0;
         // }
@@ -216,6 +218,23 @@ body {
         svg {
           path:first-of-type {
             display: none;
+          }
+        }
+
+        &:disabled {
+          opacity: .4;
+          border-color: #777;
+
+          &:hover {
+            background-color: #777;
+          }
+
+          &:active {
+            transform: none;
+          }
+
+          svg path {
+            fill: #fff;
           }
         }
       }
@@ -270,6 +289,7 @@ body {
         }
       }
     }
+
     @media (max-width: 720px) {
       flex-direction: column;
       gap: 30px;
@@ -340,6 +360,7 @@ body {
         padding: 16px;
       }
     }
+
     @media (max-width: 720px) {
       padding: 60px 15px;
     }
@@ -385,6 +406,7 @@ body {
       width: 300px;
       padding: 45px 10px 60px;
       box-sizing: border-box;
+
       @media (max-width: 720px) {
         width: 200px;
       }
@@ -397,6 +419,7 @@ body {
       font-weight: 600;
       font-size: 18px;
     }
+
     @media (max-width: 720px) {
       padding: 30px;
     }
