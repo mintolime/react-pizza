@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useLocation} from 'react-router-dom';
 import Search from './Search';
 import { useSelector } from 'react-redux';
 
@@ -7,9 +7,10 @@ import pizzaLogo from '../img/pizza-logo.svg'
 import { selectCart } from '../redux/slices/cartSlice';
 
 const Header: React.FC = () => {
+  const navigation = useLocation()
   const { items, totalPrice } = useSelector(selectCart);
   const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0)
-
+  
   return (
     <div className="header">
       <div className="container">
@@ -24,7 +25,7 @@ const Header: React.FC = () => {
         </Link>
         <Search />
 
-        <div className="header__cart">
+        {navigation.pathname !== '/cart' && <div className="header__cart">
           <Link to="/cart" className="button button--cart">
             <span>{totalPrice} ₽</span>
             <div className="button__delimiter"></div>
@@ -58,7 +59,8 @@ const Header: React.FC = () => {
             </svg>
             <span>{totalCount}</span>
           </Link>
-        </div>
+        </div>}
+
       </div>
     </div>
   );

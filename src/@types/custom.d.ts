@@ -1,24 +1,24 @@
-declare module "*.svg" {
+declare module '*.svg' {
   const content: any;
   export default content;
 }
 
-declare module "*.png" {
+declare module '*.png' {
   const content: any;
   export default content;
 }
 
-declare module "*.scss" {
+declare module '*.scss' {
   const content: any;
   export default content;
 }
 
-declare module "*@ant-design/icons" {
+declare module '*@ant-design/icons' {
   const content: any;
   export default content;
 }
 
-declare module "*antd'" {
+declare module '*antd\'' {
   const content: any;
   export default content;
 }

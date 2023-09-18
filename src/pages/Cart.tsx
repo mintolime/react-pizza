@@ -9,12 +9,17 @@ import CartEmpty from '../components/CartEmpty';
 import { selectCart } from '../redux/slices/cartSlice';
 
 const Cart: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { totalPrice, items } = useSelector(selectCart)
 
-  const totalCount = items.reduce((sum:number, item:any) => sum + item.count, 0)
+  const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0)
 
-
+  React.useEffect(() => {
+    if (items.length > 0) {
+      const dataJson = JSON.stringify(items)
+      localStorage.setItem('cart', dataJson)
+    }
+  }, [items])
 
   return (
     items.length > 0 ? <div className="container container--cart">

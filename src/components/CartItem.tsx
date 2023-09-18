@@ -1,8 +1,10 @@
-import React from "react";
+import React from 'react';
+
 import { DeleteOutlined } from '@ant-design/icons';
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { Button, Popconfirm } from 'antd';
-import { CartItemSlice, addItems, minusItems, removeItems } from '../redux/slices/cartSlice';
+import {  addItems, minusItems, removeItems } from '../redux/slices/cartSlice';
+import { CartItemSlice } from '../redux/types/typesRedux';
 
 type CartItemProps = {
   id: string;
