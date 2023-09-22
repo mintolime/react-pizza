@@ -1,14 +1,14 @@
 import { calsTotalPrice } from './calsTotalPrice';
 
 const getCartFromLS = () => {
-  const dataLS = localStorage.getItem('cart');
-  const items = dataLS ? JSON.parse(dataLS) : [];
-  const totalPrice = calsTotalPrice(items);
+	const dataLS = localStorage.getItem('cart');
+	const items = dataLS ? JSON.parse(dataLS) : [];
+	const totalPrice = calsTotalPrice(items);
 
-  return {
-    items, totalPrice
-  }
+	return {
+		items,
+		totalPrice,
+	};
+};
 
-}
-
-export const { items, totalPrice } = getCartFromLS()
+export const { items, totalPrice } = getCartFromLS();

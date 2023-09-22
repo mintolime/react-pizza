@@ -6,13 +6,13 @@ React Pizza - это frontend часть интернет магазина-пи�
 
 https://www.figma.com/file/wWUnQwvRDWBfPx1v1pCAfO/React-Pizza?type=design&node-id=0-1&mode=design&t=KgG36BT559myCx4k-0
 
-# Ссылка на  проект 
+# Ссылка на проект
 
 [клик 🍕](https://react-pizza-v2-chi.vercel.app/)
 
-# Стек технологий 
+# Стек технологий
 
-- ReactJS 18 
+- ReactJS 18
 - TypeScript
 - Redux Toolkit (хранение данных / пицц)
 - React Router v6 (навигация)
@@ -26,9 +26,9 @@ https://www.figma.com/file/wWUnQwvRDWBfPx1v1pCAfO/React-Pizza?type=design&node-i
 - Code Splitting, React Loadable, useWhyDidYouUpdate
 
 # Запуск проекта
-- Скачайте или клонируйте проект с репозитория.  `git clone https://github.com/mintolime/react-pizza-v2.git`
+
+- Скачайте или клонируйте проект с репозитория. `git clone https://github.com/mintolime/react-pizza-v2.git`
 - Откройте терминал и перейдите в директорию проекта.
 - Выполните команду `npm install` для установки всех зависимостей.
 - Затем запустите приложение командой npm start.
 - Откройте http://localhost:3000 в браузере, чтобы просмотреть приложение.
-
