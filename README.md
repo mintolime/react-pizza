@@ -23,7 +23,6 @@ https://www.figma.com/file/wWUnQwvRDWBfPx1v1pCAfO/React-Pizza?type=design&node-i
 - React Content Loader (скелетон)
 - React Pagination (пагинация)
 - Lodash.Debounce
-- Code Splitting, React Loadable, useWhyDidYouUpdate
 
 # Запуск проекта
 
