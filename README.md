@@ -26,7 +26,7 @@ https://www.figma.com/file/wWUnQwvRDWBfPx1v1pCAfO/React-Pizza?type=design&node-i
 
 # Запуск проекта
 
-- Скачайте или клонируйте проект с репозитория. `git clone https://github.com/mintolime/react-pizza-v2.git`
+- Скачайте или клонируйте проект с репозитория. `git clone https://github.com/mintolime/react-pizza.git`
 - Откройте терминал и перейдите в директорию проекта.
 - Выполните команду `npm install` для установки всех зависимостей.
 - Затем запустите приложение командой npm start.
