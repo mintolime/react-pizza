@@ -1,6 +1,6 @@
 import React from 'react';
-// import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import {
 	selectFilter,
@@ -17,18 +17,19 @@ import { useAppDispatch } from '../redux/store';
 
 function Home() {
 	const dispatch = useAppDispatch();
+	const location = useLocation();
+	const queryParams = new URLSearchParams(location.search);
 
-	const { categoryId, sort, pageCount, searchValue } =
-		useSelector(selectFilter);
+	const { categoryId, sort, searchValue } = useSelector(selectFilter);
 	const { items, status } = useSelector(selectPizzaData);
-	// console.log(searchValue)
+
+	const pageCount = parseInt(queryParams.get('page') || '1', 10);
 
 	const onChangeCategory = React.useCallback((id: number) => {
 		dispatch(setCategoryId(id));
 	}, []);
 
 	const onChangePagination = (num: number) => {
-		// console.log(pageCount);
 		dispatch(setPageCount(num));
 	};
 
@@ -69,7 +70,11 @@ function Home() {
 					items.map((data: any) => <PizzaBlock key={data.id} {...data} />)
 				)}
 			</div>
-			<Paggination pageCount={pageCount} onChangePage={onChangePagination} />
+			<Paggination
+				pageCount={3} // Общее количество страниц
+				currentPage={pageCount} // Текущая страница
+				onChangePage={onChangePagination}
+			/>
 		</div>
 	);
 }
