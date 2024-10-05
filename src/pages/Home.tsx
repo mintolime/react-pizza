@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 import {
 	selectFilter,
@@ -17,13 +17,9 @@ import { useAppDispatch } from '../redux/store';
 
 function Home() {
 	const dispatch = useAppDispatch();
-	const location = useLocation();
-	const queryParams = new URLSearchParams(location.search);
 
-	const { categoryId, sort, searchValue } = useSelector(selectFilter);
+	const { categoryId, sort,pageCount, searchValue } = useSelector(selectFilter);
 	const { items, status } = useSelector(selectPizzaData);
-
-	const pageCount = parseInt(queryParams.get('page') || '1', 10);
 
 	const onChangeCategory = React.useCallback((id: number) => {
 		dispatch(setCategoryId(id));
@@ -32,7 +28,7 @@ function Home() {
 	const onChangePagination = (num: number) => {
 		dispatch(setPageCount(num));
 	};
-
+	console.log('Hello',pageCount);
 	const getPizzas = () => {
 		const search = searchValue ? `&search=${searchValue}` : '';
 
