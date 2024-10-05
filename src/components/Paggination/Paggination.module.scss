@@ -6,7 +6,7 @@
 	padding: 30px;
 	gap: 5px;
 
-	li {
+	.pageItem {
 		text-align: center;
 		width: 40px;
 		height: 40px;
@@ -18,21 +18,30 @@
 		&:hover {
 			background-color: #fe5f1e;
 
-			a {
+			.pageLink {
 				color: #fff;
 			}
 		}
-	}
 
-	a {
-		color: #fe5f1e;
-	}
+		&.selected {
+			background-color: #fe5f1e;
 
-	:global {
-		.selected {
-			a {
-				border-bottom: 2px solid #fe5f1e;
+			.pageLink {
+				color: #fff;
 			}
 		}
+
+		&.disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+	}
+
+	.pageLink {
+		color: #fe5f1e;
+		text-decoration: none;
+		display: block;
+		width: 100%;
+		height: 100%;
 	}
 }
