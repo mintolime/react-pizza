@@ -26,7 +26,7 @@ const CartItem: React.FC<CartItemProps> = ({
 	imageUrl,
 }) => {
 	const dispatch = useDispatch();
-
+  
 	const onClickPlus = () => {
 		dispatch(addItems({ id } as CartItemSlice));
 	};
@@ -36,7 +36,6 @@ const CartItem: React.FC<CartItemProps> = ({
 	};
 
 	const onClickRemove = () => {
-		console.log(1, id);
 		dispatch(removeItems(id));
 	};
 

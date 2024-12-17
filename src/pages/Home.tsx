@@ -21,8 +21,6 @@ function Home() {
 		useSelector(selectFilter);
 	const { items, status } = useSelector(selectPizzaData);
 
-	console.log('items', items);
-
 	const onChangeCategory = React.useCallback((id: number) => {
 		dispatch(setCategoryId(id));
 	}, []);
@@ -30,8 +28,7 @@ function Home() {
 	const onChangePagination = (num: number) => {
 		dispatch(setPageCount(num));
 	};
-	// console.log('Hello',pageCount);
-	console.log('categoryId', categoryId);
+
 	const getPizzas = () => {
 		const search = searchValue ? `&search=${searchValue}` : '';
 
