@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import { useLocation } from 'react-router-dom';
 
 import {
 	selectFilter,
@@ -18,8 +17,11 @@ import { useAppDispatch } from '../redux/store';
 function Home() {
 	const dispatch = useAppDispatch();
 
-	const { categoryId, sort,pageCount, searchValue } = useSelector(selectFilter);
+	const { categoryId, sort, pageCount, searchValue } =
+		useSelector(selectFilter);
 	const { items, status } = useSelector(selectPizzaData);
+
+	console.log('items', items);
 
 	const onChangeCategory = React.useCallback((id: number) => {
 		dispatch(setCategoryId(id));
@@ -28,7 +30,8 @@ function Home() {
 	const onChangePagination = (num: number) => {
 		dispatch(setPageCount(num));
 	};
-	console.log('Hello',pageCount);
+	// console.log('Hello',pageCount);
+	console.log('categoryId', categoryId);
 	const getPizzas = () => {
 		const search = searchValue ? `&search=${searchValue}` : '';
 
@@ -67,7 +70,9 @@ function Home() {
 				)}
 			</div>
 			<Paggination
-				pageCount={3} // Общее количество страниц
+				pageCount={
+					searchValue || categoryId > 0 ? Math.ceil(items.length / 3) : 3
+				} // Общее количество страниц
 				currentPage={pageCount} // Текущая страница
 				onChangePage={onChangePagination}
 			/>
