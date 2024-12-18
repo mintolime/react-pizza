@@ -5,16 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Button, Popconfirm } from 'antd';
 import { addItems, minusItems, removeItems } from '../redux/slices/cartSlice';
 import { CartItemSlice } from '../redux/types/typesRedux';
-
-type CartItemProps = {
-	id: string;
-	title: string;
-	type: string;
-	size: number;
-	price: number;
-	count: number;
-	imageUrl: string;
-};
+import { CartItemProps } from '../redux/types/type';
 
 const CartItem: React.FC<CartItemProps> = ({
 	id,
@@ -26,7 +17,7 @@ const CartItem: React.FC<CartItemProps> = ({
 	imageUrl,
 }) => {
 	const dispatch = useDispatch();
-  
+
 	const onClickPlus = () => {
 		dispatch(addItems({ id } as CartItemSlice));
 	};
