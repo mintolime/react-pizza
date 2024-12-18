@@ -20,7 +20,6 @@ function Home() {
 	const { categoryId, sort, pageCount, searchValue } =
 		useSelector(selectFilter);
 	const { items, status } = useSelector(selectPizzaData);
-
 	const onChangeCategory = React.useCallback((id: number) => {
 		dispatch(setCategoryId(id));
 	}, []);
