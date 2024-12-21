@@ -15,6 +15,7 @@ const Cart: React.FC = () => {
 		(sum: number, item: any) => sum + item.count,
 		0
 	);
+  console.log('items', items);
 
 	React.useEffect(() => {
 		if (items.length > 0) {
@@ -113,7 +114,7 @@ const Cart: React.FC = () => {
 
 				<div className="content_cart">
 					{items.map((item: any) => (
-						<CartItem key={item.id} {...item} />
+						<CartItem key={item.uniqueKey} {...item} />
 					))}
 				</div>
 

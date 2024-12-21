@@ -15,7 +15,8 @@ const cardSlice = createSlice({
 	initialState,
 	reducers: {
 		addItems(state, action: PayloadAction<CartItemSlice>) {
-			const findItem = state.items.find((obj) => obj.id === action.payload.id);
+			const { uniqueKey } = action.payload; // Получаем уникальный ключ
+			const findItem = state.items.find((obj) => obj.uniqueKey === uniqueKey);
 
 			if (findItem) {
 				findItem.count++;

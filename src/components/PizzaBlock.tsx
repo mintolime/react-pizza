@@ -25,11 +25,13 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 }) => {
 	const dispatch = useDispatch();
 	const cartItem = useSelector(selectCartItemById(id));
-	// const [pizzaCount, setPizzaCount] = React.useState(0);
 	const [typesPizza, settypesPizza] = React.useState(0);
 	const [sizesPizza, setsizesPizza] = React.useState(0);
 
 	const addedPizzaCount = cartItem ? cartItem.count : 0;
+	const createUniqueKeyCart = (item: CartItemSlice) => {
+		return `${item.id}_${item.type}_${item.size}`;
+	};
 
 	const onClickAdd = () => {
 		const item: CartItemSlice = {
@@ -37,11 +39,14 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 			title,
 			price,
 			imageUrl,
-			type: typeNames[typesPizza],
-			size: sizes[sizesPizza],
+			type: typeNames[typesPizza], // Используем строку, а не массив
+			size: sizes[sizesPizza], // Используем число, а не массив
 			count: 0,
 		};
-		dispatch(addItems(item));
+
+		// Добавляем уникальный ключ в объект
+		const uniqueKey = createUniqueKeyCart(item);
+		dispatch(addItems({ ...item, uniqueKey })); // Передаем объект с уникальным ключом
 	};
 
 	return (
