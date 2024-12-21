@@ -39,14 +39,14 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 			title,
 			price,
 			imageUrl,
-			type: typeNames[typesPizza], // Используем строку, а не массив
-			size: sizes[sizesPizza], // Используем число, а не массив
+			type: typeNames[typesPizza], 
+			size: sizes[sizesPizza], 
 			count: 0,
 		};
 
 		// Добавляем уникальный ключ в объект
 		const uniqueKey = createUniqueKeyCart(item);
-		dispatch(addItems({ ...item, uniqueKey })); // Передаем объект с уникальным ключом
+		dispatch(addItems({ ...item, uniqueKey })); 
 	};
 
 	return (

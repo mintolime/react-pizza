@@ -28,10 +28,9 @@ const cardSlice = createSlice({
 			}
 			state.totalPrice = calsTotalPrice(state.items);
 		},
-		minusItems(state, action: PayloadAction<string>) {
-			const findItem = state.items.find(
-				(obj: any) => obj.id === action.payload
-			);
+		minusItems(state, action: PayloadAction<CartItemSlice>) {
+			const { uniqueKey } = action.payload;
+			const findItem = state.items.find((obj) => obj.uniqueKey === uniqueKey);
 			if (findItem) {
 				findItem.count--;
 			}

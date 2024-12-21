@@ -15,7 +15,6 @@ const Cart: React.FC = () => {
 		(sum: number, item: any) => sum + item.count,
 		0
 	);
-  console.log('items', items);
 
 	React.useEffect(() => {
 		if (items.length > 0) {
