@@ -1,7 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { addItems, selectCartItemById } from '../redux/slices/cartSlice';
+import { addItems } from '../redux/slices/cartSlice';
 import { CartItemSlice } from '../redux/types/typesRedux';
 const typeNames = ['тонкое', 'традиционное'];
 
@@ -24,11 +24,11 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 	types,
 }) => {
 	const dispatch = useDispatch();
-	const cartItem = useSelector(selectCartItemById(id));
+	// const cartItem = useSelector(selectCartItemById(id));
 	const [typesPizza, settypesPizza] = React.useState(0);
 	const [sizesPizza, setsizesPizza] = React.useState(0);
 
-	const addedPizzaCount = cartItem ? cartItem.count : 0;
+	// const addedPizzaCount = cartItem ? cartItem.count : 0;
 	const createUniqueKeyCart = (item: CartItemSlice) => {
 		return `${item.id}_${item.type}_${item.size}`;
 	};
@@ -39,14 +39,14 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 			title,
 			price,
 			imageUrl,
-			type: typeNames[typesPizza], 
-			size: sizes[sizesPizza], 
+			type: typeNames[typesPizza],
+			size: sizes[sizesPizza],
 			count: 0,
 		};
 
 		// Добавляем уникальный ключ в объект
 		const uniqueKey = createUniqueKeyCart(item);
-		dispatch(addItems({ ...item, uniqueKey })); 
+		dispatch(addItems({ ...item, uniqueKey }));
 	};
 
 	return (
@@ -97,7 +97,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 							/>
 						</svg>
 						<span>Добавить</span>
-						{addedPizzaCount > 0 && <i>{addedPizzaCount}</i>}
+						{/* {addedPizzaCount > 0 && <i>{addedPizzaCount}</i>} */}
 					</button>
 				</div>
 			</div>
