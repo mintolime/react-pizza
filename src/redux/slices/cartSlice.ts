@@ -36,10 +36,9 @@ const cardSlice = createSlice({
 			}
 		},
 		removeItems(state, action: PayloadAction<string>) {
-			state.items = state.items.filter(
-				(obj: any) => obj.id === !action.payload
-			);
-			state.totalPrice = 0;
+			const uniqueKey = action.payload;
+			state.items = state.items.filter((obj) => obj.uniqueKey !== uniqueKey);
+			state.totalPrice = calsTotalPrice(state.items);
 		},
 		clearItems(state) {
 			localStorage.clear();
